@@ -67,7 +67,7 @@ function query_extra_account_fields( $field_names ) {
             'chalet_no',
             'multiple_chalets_um' => 'multiple_chalets',
             'lease_length',
-            /* 'other_chalet_numbers',
+            'other_chalet_numbers',
             'lease_start_date',
             'date_chalet_purchased',
             'address',
@@ -81,7 +81,7 @@ function query_extra_account_fields( $field_names ) {
             'subscription_status',
             'communication_preference',
             'membership_state',
-            */
+            
         ];
         \sbcoa\remove_themes_um_logic();
     }
