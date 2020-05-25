@@ -81,16 +81,12 @@ function query_extra_account_fields( $field_names ) {
             'subscription_status',
             'communication_preference',
             'membership_state',
-            
+
         ];
         \sbcoa\remove_themes_um_logic();
     }
     return $field_names;
 }
-
-
-
-
 
 /**
  * Should we disable the logic in functions.php if it implements the `query_extra_account_fields` filter?
