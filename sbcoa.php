@@ -3,7 +3,7 @@
 Plugin Name: sbcoa
 Plugin URI: https://github.com/bobbingwide/sbcoa
 Description: SBCOA thugin - - WordPress theme/plugin hybrid for Sandown Bay Chalet Owners Association
-Version: 0.0.0
+Version: 0.0.1
 Author: bobbingwide
 Author URI: https://www.bobbingwide.com/about-bobbing-wide
 Text Domain: sbcoa
@@ -28,23 +28,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     http://www.gnu.org/licenses/gpl-2.0.html
 
 */
-namespace sbcoa;
+//namespace sbcoa
 
 sbcoa_loaded();
 
 function sbcoa_loaded() {
-    add_action( 'um_after_account_general', 'sbcoa\showUMExtraFields', 99);
-    add_action( 'um_account_pre_update_profile', 'sbcoa\getUMFormData', 99, 2);
-    add_filter( 'query_extra_account_fields', 'sbcoa\query_extra_account_fields', 0 );
+    add_action( 'um_after_account_general', 'sbcoa_showUMExtraFields', 99);
+    add_action( 'um_account_pre_update_profile', 'sbcoa_getUMFormData', 99, 2);
+    add_filter( 'query_extra_account_fields', 'sbcoa_query_extra_account_fields', 0 );
 }
 
-function showUMExtraFields( $args ) {
+function sbcoa_showUMExtraFields( $args ) {
     $sbcoa_dir = dirname( __FILE__ );
     require_once( "${sbcoa_dir}/includes/wpcrmtoum.php" );
     \sbcoa\wpcrmtoum\showUMExtraFields( $args );
 
 }
-function getUMFormData( $changes, $user_id ) {
+function sbcoa_getUMFormData( $changes, $user_id ) {
     $sbcoa_dir = dirname( __FILE__ );
     require_once( "${sbcoa_dir}/includes/wpcrmtoum.php" );
     \sbcoa\wpcrmtoum\getUMFormData( $changes, $user_id );
@@ -60,7 +60,7 @@ function getUMFormData( $changes, $user_id ) {
  * @param $field_names
  * @return array
  */
-function query_extra_account_fields( $field_names ) {
+function sbcoa_query_extra_account_fields( $field_names ) {
 
     if ( empty( $field_names )) {
         $field_names = ['user_category',
@@ -83,7 +83,7 @@ function query_extra_account_fields( $field_names ) {
             'membership_state',
 
         ];
-        \sbcoa\remove_themes_um_logic();
+        sbcoa_remove_themes_um_logic();
     }
     return $field_names;
 }
@@ -94,12 +94,20 @@ function query_extra_account_fields( $field_names ) {
  * For the time being I want to be able to develop the new code in the plugin without having to mess with the
  * code I've already written. So the disabling logic seems to be the way to go.
  */
-function remove_themes_um_logic() {
+function sbcoa_remove_themes_um_logic() {
     remove_action('um_after_account_general', 'showUMExtraFields', 100);
     remove_action( 'um_account_pre_update_profile', 'getUMFormData', 100, 2);
 }
 
-if ( !function_exists( "bw_trace2" ) ) {
-    function bw_trace2( $p=null ) { return $p; }
-    function bw_backtrace() {}
-}
+if (!function_exists("bw_trace2")) {
+        function bw_trace2($p = null)
+        {
+            return $p;
+        }
+
+        function bw_backtrace()
+        {
+        }
+    }
+
+
