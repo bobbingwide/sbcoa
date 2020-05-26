@@ -7,7 +7,7 @@
 * Tested up to: 5.4.1
 * Gutenberg compatible: Yes
 * Requires PHP: 5.6
-* Stable tag: 0.0.0
+* Stable tag: 0.0.1
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,10 +46,16 @@ https://github.com/bobbingwide/sbcoa
 2. Account page
 
 ## Upgrade Notice 
+# 0.0.1 
+Fixes issue #2. Needed to prevent errors when the bw_trace2() function does not exist.
+
 # 0.0.0 
 Install and activate to replace the original logic in the theme's functions.php file
 
 ## Changelog 
+# 0.0.1 
+* Fixed: Reworked main plugin file ensure bw_trace2() exists in the global namespace.
+
 # 0.0.0 
 * Added: WP-CRM to UM logic copied and cobbled from the site's theme file functions.php
 * Tested: With PHP 7.3
